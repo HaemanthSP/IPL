@@ -9,9 +9,16 @@ class Team:
         self.rank = rank
         self.fg_color = code
         self.matches = []
+        self.weekbg = {'MON': 229,
+                       'TUE': 230,
+                       'WED': 157,
+                       'THU': 193,
+                       'FRI': 195,
+                       'SAT': 223,
+                       'SUN': 225}
 
     def add_match(self, match):
-        print('Adding match %s to Team %s' % (match.id, self.name))
+        # print('Adding match %s to Team %s' % (match.id, self.name))
         self.matches.append(match)
 
     def list_matches(self):
@@ -20,18 +27,42 @@ class Team:
             print(match)
 
     def heat_map(self, start, max_matches):
-        matches = set([match.id for match in self.matches])
-        res = ['*' if i in matches else '%s=%s' % (fg(self.fg_color), attr(0)) for i in range(1, max_matches+1)][start-1:]
+        matches = {match.id:match for match in self.matches}
+        res = []
+        for i in range(1, max_matches+1):
+            if i in matches:
+                bg_color = self.weekbg[matches[i].day]
+                res.append('%s%s*%s' % (fg(self.fg_color), bg(bg_color), attr(0)))
+            else:
+                res.append('%s=%s' % (fg(self.fg_color), attr(0))) 
+
+        # Focus with in the range
+        res = res[start-1:]
+        
         print("%s%s%s\t\t%s" % (fg(self.fg_color), self.abbr, attr(0), ''.join(res)))
             
+    
+    def heat_map_wo_bg(self, start, max_matches):
+        matches = {match.id:match for match in self.matches}
+        res = ['%s%s%s' % (fg(255 if i in matches else self.fg_color),
+                           '*' if i in matches else '=',
+                           attr(0))
+               for i in range(1, max_matches+1)]
+
+        # Focus with in the range
+        res = res[start-1:]
+        return res
+       
 
 class Venue:
     def __init__(self, name:str, sym:str):
         self.name = name
         self.sym = sym
+        self.matches = [] 
     
     def add_match(self, match:any):
-        print('Adding match %s to the Venue %s' % (match.id, self.name))
+        # print('Adding match %s to the Venue %s' % (match.id, self.name))
+        self.matches.append(match)
 
     def list_matches(self):
         sorted_list = sorted(self.matches, key=lambda x: x.id)
@@ -47,11 +78,12 @@ class Match:
         self.venue = venue
         self.date = date 
         self.day = day
-        self.update_teams()
+        self.update()
 
-    def update_teams(self):
+    def update(self):
         for team in self.teams:
             team.add_match(self)
+        self.venue.add_match(self)
 
     def __str__(self):
         return "\nMatch %s - %s\n%s\t\tvs\t\t%s\n%s" % (self.id, self.date, self.teams[0].name, self.teams[1].name, self.venue.name)
@@ -98,16 +130,15 @@ class Gameplan:
         for match in sorted_list:
             print(match)
 
-
     def day_map(self, start):
         cmap = {
-                'MON': '%sM%s'%(fg(154), attr(0)),
-                'TUE': '%sT%s'%(fg(9), attr(0)),
-                'WED': '%sW%s'%(fg(46), attr(0)),
-                'THU': '%st%s'%(fg(154), attr(0)),
-                'FRI': '%sF%s'%(fg(9), attr(0)),
-                'SAT': '%sS%s'%(fg(46), attr(0)),
-                'SUN': '%s$%s'%(fg(9), attr(0))
+                'MON': '%sM%s'%(fg(229), attr(0)),
+                'TUE': '%sT%s'%(fg(230), attr(0)),
+                'WED': '%sW%s'%(fg(157), attr(0)),
+                'THU': '%st%s'%(fg(193), attr(0)),
+                'FRI': '%sF%s'%(fg(195), attr(0)),
+                'SAT': '%sS%s'%(fg(223), attr(0)),
+                'SUN': '%s$%s'%(fg(225), attr(0))
                 }
         sorted_list = sorted(self.matches, key=lambda x: x.id)
         venue = [cmap[x.day] for x in sorted_list][start-1:]
@@ -121,14 +152,39 @@ class Gameplan:
         # venue = [cmap[x.venue[0]] for x in sorted_list][start-1:]
         venue = [x.venue.sym for x in sorted_list][start-1:]
         print("\t\t%s" % (''.join(venue)))
-        
 
     def heat_maps(self, start=1, max_matches=60):
         teams = sorted(self.teams.items(), key=lambda x: x[1].rank)
         self.day_map(start)
+        map_list = []
         for name, team in teams:
-            team.heat_map(start, max_matches)
+            res = team.heat_map_wo_bg(start, max_matches)
+            density = self.match_density(res)
+            map_list.append((density[0] , "%s%s%s\t\t%s" % (fg(team.fg_color), team.abbr, attr(0), ''.join(res))))
+        
+        print("\n".join([y for _, y in sorted(map_list, key=lambda t: -t[0])]))
         self.venue_map(start)
+
+        print("\n".join([str(x) for x, _ in sorted(map_list, key=lambda t: -t[0])]))
+
+    def match_density(self, fixture):
+        last_match = None
+        count = 0
+        max_offset = 2
+        density = []
+        for idx, data in enumerate(fixture[::-1]):
+            update = 0
+            if '*' in data:
+                count += 1
+                update = count
+                last_match = idx
+            elif last_match:
+                update = max(0, count - 0.5)
+                if (idx - last_match) > max_offset:
+                    count = 0
+            density.append(update) 
+                
+        return density[::-1]
 
 
 if "__main__"  == __name__:
