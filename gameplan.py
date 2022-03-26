@@ -179,9 +179,9 @@ class Gameplan:
                 update = count
                 last_match = idx
             elif last_match:
-                update = max(0, count - 0.5)
                 if (idx - last_match) > max_offset:
                     count = 0
+                update = max(0, count - 0.5)
             density.append(update) 
                 
         return density[::-1]
