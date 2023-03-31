@@ -71,13 +71,15 @@ class Venue:
 
 
 class Match:
-    def __init__(self, match_id:int, teamA:Team, teamB:Team, venue:Venue, date:str, day:str):
+    def __init__(self, match_day:int, match_id:int, teamA:Team, teamB:Team, venue:Venue, date:str, day:str, time:str):
         super().__init__()
+        self.day = match_day
         self.id = match_id
         self.teams = [teamA, teamB]
         self.venue = venue
         self.date = date
         self.day = day
+        self.time = time
         self.update()
 
     def update(self):
@@ -118,13 +120,15 @@ class Gameplan:
         with open(fixtures, 'r') as ff:
             lines = ff.readlines()
             for line in lines:
-                match_id, day, date, teamA, teamB, venue = line.strip().split('\t')
-                self.matches.append(Match(int(match_id),
+                match_day, match_id, day, date, time, teamA, teamB, venue = line.strip().split('\t')
+                self.matches.append(Match(int(match_day),
+                                          int(match_id),
                                           self.teams[teamA],
                                           self.teams[teamB],
                                           self.venues[venue],
                                           date,
-                                          day))
+                                          day,
+                                          time))
 
     def list_matches(self):
         sorted_list = sorted(self.matches, key=lambda x: x.id)
