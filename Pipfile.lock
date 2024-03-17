@@ -1,0 +1,37 @@
+{
+    "Packages": {
+        "colored": {
+            "hashes": [
+                "sha256:595e1dd7f3b472ea5f12af21d2fec8a2ea2cf8f9d93e67180197330b26df9b61",
+                "sha256:a7069673bd90a35f46cb748d012c17284a0668d2f1c06bc7a51822a2d5ad2112"
+            ],
+            "index": "pypi",
+            "version": "==2.2.4"
+        }
+    },
+    "_meta": {
+        "hash": {
+            "sha256": "6c8bb5be5d664d869c4fe7371021f02e91e5aeb42b00ffa84eccf4b2d0ec072a"
+        },
+        "pipfile-spec": 6,
+        "requires": {},
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "colored": {
+            "hashes": [
+                "sha256:595e1dd7f3b472ea5f12af21d2fec8a2ea2cf8f9d93e67180197330b26df9b61",
+                "sha256:a7069673bd90a35f46cb748d012c17284a0668d2f1c06bc7a51822a2d5ad2112"
+            ],
+            "index": "pypi",
+            "version": "==2.2.4"
+        }
+    },
+    "develop": {}
+}

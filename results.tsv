@@ -1,72 +1,21 @@
-01	FRI	0409	CHENNAI	MI	RCB
-
-01	Fri	0331	Ahmedabad
-02	Sat	0401	Mohali
-03	Sat	0401	Lucknow
-04	Sun	0402	Hyderabad
-05	Sun	0402	Bengaluru
-06	Mon	0403	Chennai
-07	Tue	0404	Delhi
-08	Wed	0405	Guwahati
-09	Thu	0406	Kolkata
-10	Fri	0407	Lucknow
-11	Sat	0408	Guwahati
-12	Sat	0408	Mumbai
-13	Sun	0409	Ahmedabad
-14	Sun	0409	Hyderabad
-15	Mon	0410	Bengaluru
-16	Tue	0411	Delhi
-17	Wed	0412	Chennai
-18	Thu	0413	Mohali
-19	Fri	0414	Kolkata
-20	Sat	0415	Bengaluru
-21	Sat	0415	Lucknow
-22	Sun	0416	Mumbai
-23	Sun	0416	Ahmedabad
-24	Mon	0417	Bengaluru
-25	Tue	0418	Hyderabad
-26	Wed	0419	Jaipur
-27	Thu	0420	Mohali
-28	Thu	0420	Delhi
-29	Fri	0421	Chennai
-30	Sat	0422	Lucknow
-31	Sat	0422	Mumbai
-32	Sun	0423	Bengaluru
-33	Sun	0423	Kolkata
-34	Mon	0424	Hyderabad
-35	Tue	0425	Ahmedabad
-36	Wed	0426	Bengaluru
-37	Thu	0427	Jaipur
-38	Fri	0428	Mohali
-39	Sat	0429	Kolkata
-40	Sat	0429	Delhi
-41	Sun	0430	Chennai
-42	Sun	0430	Mumbai
-43	Mon	0501	Lucknow
-44	Tue	0502	Ahmedabad
-45	Wed	0503	Mohali
-46	Thu	0504	Lucknow
-47	Thu	0504	Hyderabad
-48	Fri	0505	Jaipur
-49	Sat	0506	Chennai
-50	Sat	0506	Delhi
-51	Sun	0507	Ahmedabad
-52	Sun	0507	Jaipur
-53	Mon	0508	Kolkata
-54	Tue	0509	Mumbai
-55	Wed	0510	Chennai
-56	Thu	0511	Kolkata
-57	Fri	0512	Mumbai
-58	Sat	0513	Hyderabad
-59	Sat	0513	Delhi
-60	Sun	0514	Jaipur
-61	Sun	0514	Chennai
-62	Mon	0515	Ahmedabad
-63	Tue	0516	Lucknow
-64	Wed	0517	Dharamshala
-65	Thu	0518	Hyderabad
-66	Fri	0519	Dharamshala
-67	Sat	0520	Delhi
-68	Sat	0520	Kolkata
-69	Sun	0521	Mumbai
-70	Sun	0521	Bengaluru
+01	01	Fri	0322	7:30	CSK	RCB	Chennai
+02	02	Sat	0323	3:30	PK	DC	Manipur
+02	03	Sat	0323	7:30	KKR	SRH	Kolkata
+03	04	Sun	0324	3:30	RR	LSG	Jaipur
+03	05	Sun	0324	7:30	GT	MI	Ahmedabad
+04	06	Mon	0325	7:30	RCB	PK	Bengaluru
+05	07	Tue	0326	7:30	CSK	GT	Chennai
+06	08	Wed	0327	7:30	SRH	MI	Hyderabad
+07	09	Thu	0328	7:30	RR	DC	Jaipur
+08	10	Fri	0329	7:30	RCB	KKR	Bengaluru
+09	11	Sat	0330	7:30	LSG	PK	Lucknow
+10	12	Sun	0331	3:30	GT	SRH	Ahmedabad
+10	13	Sun	0331	7:30	DC	CSK	Visakhapatnam
+11	14	Mon	0401	7:30	MI	RR	Mumbai
+12	15	Tue	0402	7:30	RCB	LSG	Bengaluru
+13	16	Wed	0403	7:30	DC	KKR	Visakhapatnam
+14	17	Thu	0404	7:30	GT	PK	Ahmedabad
+15	18	Fri	0405	7:30	SRH	CSK	Hyderabad
+16	19	Sat	0406	7:30	RR	RCB	Jaipur
+17	20	Sun	0407	3:30	MI	DC	Mumbai
+17	21	Sun	0407	7:30	LSG	GT	Lucknow
